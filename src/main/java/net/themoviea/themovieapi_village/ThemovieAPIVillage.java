@@ -11,12 +11,13 @@ import net.minecraft.util.registry.RegistryKey;
 import net.themoviea.themovieapi_village.village.EntityProfession;
 
 public class ThemovieAPIVillage implements ModInitializer {
+	public static final String MOD_ID = "themovieapivillage";
 	public static final RegistryKey<Registry<EntityProfession>> ENTITY_PROFESSION_KEY;
 	public static final Registry<EntityProfession> ENTITY_PROFESSION;
 	
 	static {
-		ENTITY_PROFESSION_KEY = RegistryKey.ofRegistry(new Identifier("themovieapivillage", "entity_profession"));
-		MutableRegistry<EntityProfession> temp = new DefaultedRegistry<>("themovieapivillage:unemployed", ENTITY_PROFESSION_KEY, Lifecycle.experimental());
+		ENTITY_PROFESSION_KEY = RegistryKey.ofRegistry(new Identifier(MOD_ID, "entity_profession"));
+		MutableRegistry<EntityProfession> temp = new DefaultedRegistry<>(MOD_ID + ":unemployed", ENTITY_PROFESSION_KEY, Lifecycle.experimental());
 		ENTITY_PROFESSION = temp;
 	}
 	@Override
