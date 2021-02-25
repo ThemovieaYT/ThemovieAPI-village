@@ -24,11 +24,11 @@ public class EntityProfession implements CustomEasyRegister<EntityProfession> {
 	@Nullable
 	private final SoundEvent workSound;
 	
-	private EntityProfession(String id, PointOfInterestType workStation, SoundEvent workSound) {
+	public EntityProfession(String id, PointOfInterestType workStation, SoundEvent workSound) {
 		this(id, workStation, ImmutableSet.of(), workSound);
 	}
 	
-	private EntityProfession(String id, PointOfInterestType workStation, ImmutableSet<Block> secondaryJobSites, SoundEvent workSound) {
+	public EntityProfession(String id, PointOfInterestType workStation, ImmutableSet<Block> secondaryJobSites, SoundEvent workSound) {
 		this.id = id;
 		this.workStation = workStation;
 		this.secondaryJobSites = secondaryJobSites;
