@@ -8,14 +8,16 @@ import com.google.common.collect.ImmutableSet;
 
 import net.minecraft.block.Block;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
 import net.themoviea.themovieapi_base.exceptions.InputNotAnObjectException;
 import net.themoviea.themovieapi_base.registering.CustomEasyRegister;
 import net.themoviea.themovieapi_village.ThemovieAPIVillage;
 
 public class EntityProfession implements CustomEasyRegister<EntityProfession> {
-	public static final EntityProfession NONE = new EntityProfession("themovieapivillage", PointOfInterestType.UNEMPLOYED, (SoundEvent)null);
+	public static final EntityProfession NONE;
 	private static EntityProfession entityProfession;
 	private final ArrayList<Object> mcEntityProfession = new ArrayList<>();
 	private final String id;
@@ -65,6 +67,14 @@ public class EntityProfession implements CustomEasyRegister<EntityProfession> {
 		return this.mcEntityProfession;
 	}
 	
+	static EntityProfession register(String id, PointOfInterestType workStation, @Nullable SoundEvent workSound) {
+	      return register(id, workStation, ImmutableSet.of(), workSound);
+	   }
+	
+	static EntityProfession register(String id, PointOfInterestType workStation, ImmutableSet<Block> secondaryJobSites, @Nullable SoundEvent workSound) {
+		return(EntityProfession)Registry.register(ThemovieAPIVillage.ENTITY_PROFESSION, new Identifier(id), new EntityProfession(id, workStation, secondaryJobSites, workSound));
+	}
+	
 	@Override
 	public void registerCustom(String modid, Registry<EntityProfession> registry) throws InputNotAnObjectException {
 		CustomEasyRegister.super.registerCustom(modid, registry);
@@ -72,7 +82,7 @@ public class EntityProfession implements CustomEasyRegister<EntityProfession> {
 	
 	@Override
 	public boolean createCustomRegisterList(Object... a) {
-		return CustomEasyRegister.super.createCustomRegisterList(NONE, "none", a);
+		return CustomEasyRegister.super.createCustomRegisterList(a);
 	}
 	
 	public static void registerEntityProfessions(String modid, Object... a) {
@@ -83,5 +93,9 @@ public class EntityProfession implements CustomEasyRegister<EntityProfession> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	static {
+		NONE = register("themovieapivillage:none", PointOfInterestType.UNEMPLOYED, (SoundEvent)null);
 	}
 }
