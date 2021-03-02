@@ -90,7 +90,7 @@ public class EntityProfession implements CustomEasyRegister<EntityProfession> {
 		try {
 			getEntityProfession().registerCustom(modid, ThemovieAPIVillage.ENTITY_PROFESSION);
 		} catch (InputNotAnObjectException e) {
-			e.printStackTrace();
+			e.printStackTrace()
 		}
 	}
 	
