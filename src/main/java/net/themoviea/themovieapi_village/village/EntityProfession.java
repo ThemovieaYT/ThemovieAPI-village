@@ -52,8 +52,7 @@ public class EntityProfession implements CustomEasyRegister<EntityProfession> {
 	public ImmutableSet<Block> getSecondaryJobSites() {
 	      return this.secondaryJobSites;
 	}
-
-	@Override
+	
 	public EntityProfession getObject() {
 		return this;
 	}
@@ -62,7 +61,6 @@ public class EntityProfession implements CustomEasyRegister<EntityProfession> {
 		return entityProfession;
 	}
 
-	@Override
 	public ArrayList<Object> getArrayList() {
 		return this.mcEntityProfession;
 	}
@@ -75,12 +73,10 @@ public class EntityProfession implements CustomEasyRegister<EntityProfession> {
 		return(EntityProfession)Registry.register(ThemovieAPIVillage.ENTITY_PROFESSION, new Identifier(id), new EntityProfession(id, workStation, secondaryJobSites, workSound));
 	}
 	
-	@Override
 	public void registerCustom(String modid, Registry<EntityProfession> registry) throws InputNotAnObjectException {
 		CustomEasyRegister.super.registerCustom(modid, registry);
 	}
 	
-	@Override
 	public boolean createCustomRegisterList(Object... a) {
 		return CustomEasyRegister.super.createCustomRegisterList(a);
 	}
