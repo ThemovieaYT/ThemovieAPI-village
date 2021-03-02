@@ -91,6 +91,6 @@ public class EntityProfession implements CustomEasyRegister<EntityProfession> {
 	}
 	
 	static {
-		NONE = register("themovieapivillage:none", PointOfInterestType.UNEMPLOYED, (SoundEvent)null);
+		NONE = register("themovieapivillage:none", ThemovieAPIVillage.ENTITY_UNEMPLOYED, (SoundEvent)null);
 	}
 }

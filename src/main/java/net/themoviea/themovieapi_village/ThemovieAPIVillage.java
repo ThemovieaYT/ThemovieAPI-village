@@ -6,9 +6,11 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import com.google.common.base.Suppliers;
+import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Lifecycle;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.mixin.object.builder.PointOfInterestTypeAccessor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.DefaultedRegistry;
 import net.minecraft.util.registry.MutableRegistry;
@@ -26,6 +28,8 @@ public class ThemovieAPIVillage implements ModInitializer {
 	private static final Supplier<Set<PointOfInterestType>> VILLAGE_ENTITY_WORKSTATIONS;
 	public static final Predicate<PointOfInterestType> IS_USED_BY_ENTITY_PROFESSION;
 	
+	public static final PointOfInterestType ENTITY_UNEMPLOYED;
+	
 	static {
 		ENTITY_PROFESSION_KEY = RegistryKey.ofRegistry(new Identifier(MOD_ID, "entity_profession"));
 		MutableRegistry<EntityProfession> temp = new DefaultedRegistry<>(MOD_ID + ":unemployed", ENTITY_PROFESSION_KEY, Lifecycle.experimental());
@@ -36,6 +40,7 @@ public class ThemovieAPIVillage implements ModInitializer {
 		IS_USED_BY_ENTITY_PROFESSION = (pointOfInterestType) -> {
 			return ((Set)VILLAGE_ENTITY_WORKSTATIONS.get()).contains(pointOfInterestType);
 		};
+		ENTITY_UNEMPLOYED = PointOfInterestTypeAccessor.callCreate(MOD_ID + ":entity_unemployed", ImmutableSet.of(), 1, IS_USED_BY_ENTITY_PROFESSION, 1);
 	}
 	@Override
 	public void onInitialize() {
