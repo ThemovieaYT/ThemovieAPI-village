@@ -29,7 +29,7 @@ public class ThemovieAPITradeOffers {
 	      return new Int2ObjectOpenHashMap(map);
 	}
 	
-	static class OneEmeraldFactory implements ThemovieAPITradeOffers.Factory {
+	public static class OneEmeraldFactory implements ThemovieAPITradeOffers.Factory {
 		private final Item buy;
 		private final int price;
 		private final int maxUses;

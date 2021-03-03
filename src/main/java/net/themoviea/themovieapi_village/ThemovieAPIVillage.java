@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Lifecycle;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
 import net.fabricmc.fabric.mixin.object.builder.PointOfInterestTypeAccessor;
 import net.minecraft.util.Identifier;

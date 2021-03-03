@@ -67,11 +67,11 @@ public class EntityProfession {
 		return this.mcEntityProfession;
 	}
 	
-	public static EntityProfession register(String id, PointOfInterestType workStation, @Nullable SoundEvent workSound) {
+	static EntityProfession register(String id, PointOfInterestType workStation, @Nullable SoundEvent workSound) {
 	      return register(id, workStation, ImmutableSet.of(), workSound);
 	   }
 	
-	public static EntityProfession register(String id, PointOfInterestType workStation, ImmutableSet<Block> secondaryJobSites, @Nullable SoundEvent workSound) {
+	static EntityProfession register(String id, PointOfInterestType workStation, ImmutableSet<Block> secondaryJobSites, @Nullable SoundEvent workSound) {
 		return(EntityProfession)Registry.register(ThemovieAPIVillage.ENTITY_PROFESSION, new Identifier(id), new EntityProfession(id, workStation, secondaryJobSites, workSound));
 	}
 	
