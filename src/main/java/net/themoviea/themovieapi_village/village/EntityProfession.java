@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -16,7 +18,7 @@ import net.themoviea.themovieapi_base.exceptions.InputNotAnObjectException;
 import net.themoviea.themovieapi_base.registering.CustomEasyRegister;
 import net.themoviea.themovieapi_village.ThemovieAPIVillage;
 
-public class EntityProfession implements CustomEasyRegister<EntityProfession> {
+public class EntityProfession {
 	public static final EntityProfession NONE;
 	private static EntityProfession entityProfession;
 	private final ArrayList<Object> mcEntityProfession = new ArrayList<>();
@@ -65,29 +67,12 @@ public class EntityProfession implements CustomEasyRegister<EntityProfession> {
 		return this.mcEntityProfession;
 	}
 	
-	static EntityProfession register(String id, PointOfInterestType workStation, @Nullable SoundEvent workSound) {
+	public static EntityProfession register(String id, PointOfInterestType workStation, @Nullable SoundEvent workSound) {
 	      return register(id, workStation, ImmutableSet.of(), workSound);
 	   }
 	
-	static EntityProfession register(String id, PointOfInterestType workStation, ImmutableSet<Block> secondaryJobSites, @Nullable SoundEvent workSound) {
+	public static EntityProfession register(String id, PointOfInterestType workStation, ImmutableSet<Block> secondaryJobSites, @Nullable SoundEvent workSound) {
 		return(EntityProfession)Registry.register(ThemovieAPIVillage.ENTITY_PROFESSION, new Identifier(id), new EntityProfession(id, workStation, secondaryJobSites, workSound));
-	}
-	
-	public void registerCustom(String modid, Registry<EntityProfession> registry) throws InputNotAnObjectException {
-		CustomEasyRegister.super.registerCustom(modid, registry);
-	}
-	
-	public boolean createCustomRegisterList(Object... a) {
-		return CustomEasyRegister.super.createCustomRegisterList(a);
-	}
-	
-	public static void registerEntityProfessions(String modid, Object... a) {
-		getEntityProfession().createCustomRegisterList(a);
-		try {
-			getEntityProfession().registerCustom(modid, ThemovieAPIVillage.ENTITY_PROFESSION);
-		} catch (InputNotAnObjectException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	static {

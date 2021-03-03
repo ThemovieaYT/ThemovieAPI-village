@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Lifecycle;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
 import net.fabricmc.fabric.mixin.object.builder.PointOfInterestTypeAccessor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.DefaultedRegistry;
@@ -47,7 +48,6 @@ public class ThemovieAPIVillage implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
-
 		System.out.println("Hello Fabric world!");
 	}
 }
