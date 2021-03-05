@@ -5,6 +5,7 @@ import net.minecraft.util.registry.Registry;
 import net.themoviea.themovieapi_village.ThemovieAPIVillage;
 
 public class VillageEntityType {
+	public static final VillageEntityType NONE = create("none");
 	public static final VillageEntityType RED = create("red");
 	public static final VillageEntityType ORANGE = create("orange");
 	public static final VillageEntityType YELLOW = create("yellow");
@@ -13,6 +14,10 @@ public class VillageEntityType {
 	
 	private VillageEntityType(String string) {
 		this.string = string;
+	}
+	
+	public String toString() {
+		return this.string;
 	}
 	
 	public static VillageEntityType create(String id) {
