@@ -19,7 +19,7 @@ import net.minecraft.village.TradeOffer;
 
 public class ThemovieAPITradeOffers {
 	
-	public static void addTradeOffersToProfessions(Map<EntityProfession, Int2ObjectMap<ThemovieAPITradeOffers.Factory[]>> professionMap, EntityProfession profession, ImmutableMap<Integer, ThemovieAPITradeOffers.Factory[]> map) {
+	public static void addTradeOffersToProfessions(HashMap<Object, Object> professionMap, EntityProfession profession, ImmutableMap<Integer, ThemovieAPITradeOffers.Factory[]> map) {
 		professionMap.put(profession, copyToFastUtilMap(map));
 	}
 	
