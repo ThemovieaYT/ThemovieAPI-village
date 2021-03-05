@@ -14,20 +14,31 @@ import net.themoviea.themovieapi_village.ThemovieAPIVillage;
 public class VillageEntityData {
 	private static final int[] LEVEL_BASE_EXPERIENCE = new int[]{0, 10, 70, 150, 250};
 	public static final Codec<VillageEntityData> CODEC = RecordCodecBuilder.create((instance) -> {
-	      return instance.group(ThemovieAPIVillage.ENTITY_PROFESSION.fieldOf("entity_profession").orElseGet(() -> {
-	         return EntityProfession.NONE;
+	      return instance.group(ThemovieAPIVillage.VILLAGE_ENTITY_TYPE.fieldOf("village_entity_type").orElseGet(() -> {
+	         return VillageEntityType.RED;
 	      }).forGetter((villagerData) -> {
-	         return villagerData.profession;
+	         return villagerData.type;
+	      }), ThemovieAPIVillage.ENTITY_PROFESSION.fieldOf("entity_profession").orElseGet(() -> {
+	    	  return EntityProfession.NONE;
+	      }).forGetter((villagerData) -> {
+	    	  return villagerData.profession;
 	      }), Codec.INT.fieldOf("level").orElse(1).forGetter((villagerData) -> {
 	         return villagerData.level;
 	      })).apply(instance, VillageEntityData::new);
 	   });
+	
+	private final VillageEntityType type;
 	private final EntityProfession profession;
 	private final int level;
 	
-	public VillageEntityData(EntityProfession profession, int i) {
+	public VillageEntityData(VillageEntityType type, EntityProfession profession, int i) {
+		this.type = type;
 		this.profession = profession;
 		this.level = Math.max(1, i);
+	}
+	
+	public VillageEntityType getVillageEntityType() {
+		return this.type;
 	}
 	
 	public EntityProfession getProfession() {
@@ -38,12 +49,16 @@ public class VillageEntityData {
 		return this.level;
 	}
 	
+	public VillageEntityData withVillageEntityType(VillageEntityType type) {
+		return new VillageEntityData(type, this.profession, this.level);
+	}
+	
 	public VillageEntityData withProfession(EntityProfession profession) {
-		return new VillageEntityData(profession, this.level);
+		return new VillageEntityData(this.type, profession, this.level);
 	}
 	
 	public VillageEntityData withLevel(int level) {
-		return new VillageEntityData(this.profession, level);
+		return new VillageEntityData(this.type, this.profession, level);
 	}
 	
 	@Environment(EnvType.CLIENT)

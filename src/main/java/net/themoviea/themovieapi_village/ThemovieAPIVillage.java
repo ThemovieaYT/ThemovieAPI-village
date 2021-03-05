@@ -20,12 +20,16 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.poi.PointOfInterestType;
 import net.themoviea.themovieapi_village.village.EntityProfession;
+import net.themoviea.themovieapi_village.village.VillageEntityType;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class ThemovieAPIVillage implements ModInitializer {
 	public static final String MOD_ID = "themovieapivillage";
 	public static final RegistryKey<Registry<EntityProfession>> ENTITY_PROFESSION_KEY;
 	public static final Registry<EntityProfession> ENTITY_PROFESSION;
+	
+	public static final RegistryKey<Registry<VillageEntityType>> VILLAGE_ENTITY_TYPE_KEY;
+	public static final Registry<VillageEntityType> VILLAGE_ENTITY_TYPE;
 	
 	private static final Supplier<Set<PointOfInterestType>> VILLAGE_ENTITY_WORKSTATIONS;
 	public static final Predicate<PointOfInterestType> IS_USED_BY_ENTITY_PROFESSION;
@@ -36,6 +40,11 @@ public class ThemovieAPIVillage implements ModInitializer {
 		ENTITY_PROFESSION_KEY = RegistryKey.ofRegistry(new Identifier(MOD_ID, "entity_profession"));
 		MutableRegistry<EntityProfession> temp = new DefaultedRegistry<>(MOD_ID + ":unemployed", ENTITY_PROFESSION_KEY, Lifecycle.experimental());
 		ENTITY_PROFESSION = temp;
+		
+		VILLAGE_ENTITY_TYPE_KEY = RegistryKey.ofRegistry(new Identifier(MOD_ID, "village_entity_type"));
+		MutableRegistry<VillageEntityType> entityVillageTypeTemp = new DefaultedRegistry<>(MOD_ID + ":red", VILLAGE_ENTITY_TYPE_KEY, Lifecycle.experimental());
+		VILLAGE_ENTITY_TYPE = entityVillageTypeTemp;
+		
 		VILLAGE_ENTITY_WORKSTATIONS = Suppliers.memoize(() -> {
 			return (Set)ENTITY_PROFESSION.stream().map(EntityProfession::getWorkStation).collect(Collectors.toSet());
 		});

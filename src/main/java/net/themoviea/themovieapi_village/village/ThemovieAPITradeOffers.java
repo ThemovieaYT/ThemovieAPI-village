@@ -18,10 +18,9 @@ import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffer;
 
 public class ThemovieAPITradeOffers {
-	public static Map<EntityProfession, Int2ObjectMap<ThemovieAPITradeOffers.Factory[]>> PROFESSION_TRADE_OFFERS = new HashMap<>();
 	
-	public static void addTradeOffersToProfessions(EntityProfession profession, ImmutableMap<Integer, ThemovieAPITradeOffers.Factory[]> map) {
-		PROFESSION_TRADE_OFFERS.put(profession, copyToFastUtilMap(map));
+	public static void addTradeOffersToProfessions(Map<EntityProfession, Int2ObjectMap<ThemovieAPITradeOffers.Factory[]>> professionMap, EntityProfession profession, ImmutableMap<Integer, ThemovieAPITradeOffers.Factory[]> map) {
+		professionMap.put(profession, copyToFastUtilMap(map));
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

@@ -6,6 +6,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.themoviea.themovieapi_village.ThemovieAPIVillage;
 import net.themoviea.themovieapi_village.village.EntityProfession;
 import net.themoviea.themovieapi_village.village.VillageEntityData;
+import net.themoviea.themovieapi_village.village.VillageEntityType;
 
 public class TrackedDataHandlerRegister {
 	public static final TrackedDataHandler<VillageEntityData> VILLAGE_ENTITY_DATA = new TrackedDataHandler<VillageEntityData>() {
@@ -14,7 +15,7 @@ public class TrackedDataHandlerRegister {
 		}
 		
 		public VillageEntityData read(PacketByteBuf packetByteBuf) {
-			return new VillageEntityData((EntityProfession)ThemovieAPIVillage.ENTITY_PROFESSION.get(packetByteBuf.readVarInt()), packetByteBuf.readVarInt());
+			return new VillageEntityData((VillageEntityType)ThemovieAPIVillage.VILLAGE_ENTITY_TYPE.get(packetByteBuf.readVarInt()), (EntityProfession)ThemovieAPIVillage.ENTITY_PROFESSION.get(packetByteBuf.readVarInt()), packetByteBuf.readVarInt());
 		}
 		
 		public VillageEntityData copy(VillageEntityData villageEntityData) {
