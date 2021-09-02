@@ -17,29 +17,30 @@ import net.minecraft.world.poi.PointOfInterestType;
 import net.themoviea.themovieapi_base.exceptions.InputNotAnObjectException;
 import net.themoviea.themovieapi_base.registering.CustomEasyRegister;
 import net.themoviea.themovieapi_village.ThemovieAPIVillage;
+import net.minecraft.block.BlockState;
 
 public class EntityProfession {
 	public static final EntityProfession NONE;
 	private static EntityProfession entityProfession;
 	private final ArrayList<Object> mcEntityProfession = new ArrayList<>();
 	private final String id;
-	private final PointOfInterestType workStation;
+	private final BlockState workStation;
 	private final ImmutableSet<Block> secondaryJobSites;
 	@Nullable
 	private final SoundEvent workSound;
 	
-	public EntityProfession(String id, PointOfInterestType workStation, SoundEvent workSound) {
+	public EntityProfession(String id, BlockState workStation, SoundEvent workSound) {
 		this(id, workStation, ImmutableSet.of(), workSound);
 	}
 	
-	public EntityProfession(String id, PointOfInterestType workStation, ImmutableSet<Block> secondaryJobSites, SoundEvent workSound) {
+	public EntityProfession(String id, BlockState workStation, ImmutableSet<Block> secondaryJobSites, SoundEvent workSound) {
 		this.id = id;
 		this.workStation = workStation;
 		this.secondaryJobSites = secondaryJobSites;
 		this.workSound = workSound;
 	}
 	
-	public PointOfInterestType getWorkStation() {
+	public BlockState getWorkStation() {
 		return this.workStation;
 	}
 	
@@ -67,11 +68,11 @@ public class EntityProfession {
 		return this.mcEntityProfession;
 	}
 	
-	public static EntityProfession register(String id, PointOfInterestType workStation, @Nullable SoundEvent workSound) {
+	public static EntityProfession register(String id, BlockState workStation, @Nullable SoundEvent workSound) {
 	      return register(id, workStation, ImmutableSet.of(), workSound);
 	   }
 	
-	public static EntityProfession register(String id, PointOfInterestType workStation, ImmutableSet<Block> secondaryJobSites, @Nullable SoundEvent workSound) {
+	public static EntityProfession register(String id, BlockState workStation, ImmutableSet<Block> secondaryJobSites, @Nullable SoundEvent workSound) {
 		return(EntityProfession)Registry.register(ThemovieAPIVillage.ENTITY_PROFESSION, new Identifier(id), new EntityProfession(id, workStation, secondaryJobSites, workSound));
 	}
 	
