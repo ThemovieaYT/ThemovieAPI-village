@@ -77,6 +77,6 @@ public class EntityProfession {
 	}
 	
 	static {
-		NONE = register("themovieapivillage:none", ThemovieAPIVillage.ENTITY_UNEMPLOYED, (SoundEvent)null);
+		NONE = register("themovieapivillage:none", (BlockState)null, (SoundEvent)null);
 	}
 }
